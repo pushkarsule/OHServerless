@@ -9,9 +9,9 @@ on:
       - main
   workflow_dispatch:
 
-defaults:
- run:
-  working-directory: ./ch2
+#defaults:
+# run:
+#  working-directory: ./ch2
 
 env:
   AZURE_FUNCTIONAPP_PACKAGE_PATH: './ch2' # set this to the path to your web app project, defaults to the repository root

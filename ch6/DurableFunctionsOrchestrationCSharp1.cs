@@ -18,11 +18,14 @@ namespace Company.Function
         {
             var outputs = new List<string>();
             string blobname = context.GetInput<string>();
+            var file1 = blobname + "-OrderHeaderDetails.csv";
+            var file2 = blobname + "-OrderLineItems.csv";
+            var file3 = blobname + "-ProductInformation.csv";
 
             // Replace "hello" with the name of your Durable Activity Function.
-            outputs.Add(await context.CallActivityAsync<string>("DurableFunctionsOrchestrationCSharp1_Hello", blobname));
-            outputs.Add(await context.CallActivityAsync<string>("DurableFunctionsOrchestrationCSharp1_Hello", blobname));
-            outputs.Add(await context.CallActivityAsync<string>("DurableFunctionsOrchestrationCSharp1_Hello", blobname));
+            outputs.Add(await context.CallActivityAsync<string>("DurableFunctionsOrchestrationCSharp1_Hello", file1));
+            outputs.Add(await context.CallActivityAsync<string>("DurableFunctionsOrchestrationCSharp1_Hello", file2));
+            outputs.Add(await context.CallActivityAsync<string>("DurableFunctionsOrchestrationCSharp1_Hello", file3));
 
             // returns ["Hello Tokyo!", "Hello Seattle!", "Hello London!"]
             return outputs;
@@ -35,16 +38,18 @@ namespace Company.Function
             return $"Hello {name}!";
         }
 
+        //filter on file type
+        //"path": "samples/{name}.png",
         [FunctionName("BlobTrigger")]
         public static async Task Run(
-            [BlobTrigger("fntest/{name}", Connection ="mystoracct")] Stream myItem,
+            [BlobTrigger("fntest/{name}-OrderHeaderDetails.csv", Connection ="mystoracct")] Stream myItem,
             string name,
             [DurableClient] IDurableOrchestrationClient starter,
             ILogger log)
         {
             StreamReader reader = new StreamReader(myItem);
             string jsonContent = reader.ReadToEnd();
-                           // Function input comes from the request content.
+            // Function input comes from the request content.
             string instanceId = await starter.StartNewAsync("DurableFunctionsOrchestrationCSharp1", null, name);
 
             //log.LogInformation($"Started orchestration with ID = '{instanceId}'.");

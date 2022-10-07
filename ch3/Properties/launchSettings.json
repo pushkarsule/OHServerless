@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "ch3": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7235",
+      "launchBrowser": false
+    }
+  }
+}

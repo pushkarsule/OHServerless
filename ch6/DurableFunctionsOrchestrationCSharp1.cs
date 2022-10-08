@@ -7,6 +7,7 @@ using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Azure.WebJobs.Host;
 using Microsoft.Extensions.Logging;
 using System.IO;
+using Azure.Storage.Blobs;
 
 namespace Company.Function
 {
@@ -34,6 +35,9 @@ namespace Company.Function
         [FunctionName("DurableFunctionsOrchestrationCSharp1_Hello")]
         public static string SayHello([ActivityTrigger] string name, ILogger log)
         {
+            var sourceConnString = System.Environment.GetEnvironmentVariable("mystoracct");
+            var sourceBlobClient = new BlobClient(sourceConnString, "batchfiles", name);
+            sourceBlobClient.DeleteIfExists();
             log.LogInformation($"Saying hello to {name}.");
             return $"Hello {name}!";
         }
@@ -42,7 +46,7 @@ namespace Company.Function
         //"path": "samples/{name}.png",
         [FunctionName("BlobTrigger")]
         public static async Task Run(
-            [BlobTrigger("fntest/{name}-OrderHeaderDetails.csv", Connection ="mystoracct")] Stream myItem,
+            [BlobTrigger("batchfiles/{name}-OrderHeaderDetails.csv", Connection ="mystoracct")] Stream myItem,
             string name,
             [DurableClient] IDurableOrchestrationClient starter,
             ILogger log)

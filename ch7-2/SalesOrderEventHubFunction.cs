@@ -7,13 +7,14 @@ using Microsoft.Azure.Documents;
 using Microsoft.Azure.EventHubs;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Extensions.Logging;
+using System.Diagnostics;
 
 namespace Challenge7EventHub
 {
     public class SalesOrderEventHubFunction
     {
         [FunctionName("SalesOrderEventHubFunction")]
-        public async Task Run([EventHubTrigger("bfyoc-sales", Connection = "EventHubConnectionString")] EventData[] events,
+        public async Task Run([EventHubTrigger("ohpossales", Connection = "EventHubConnectionString")] EventData[] events,
             [CosmosDB(
                     databaseName:"Sales",
                     collectionName:"Orders",

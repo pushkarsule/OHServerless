@@ -1,4 +1,5 @@
 ﻿# of running instances KQL
+ # second
 
 traces
 | where timestamp >= ago(1h)

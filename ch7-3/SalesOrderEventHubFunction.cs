@@ -13,11 +13,11 @@ namespace Company.Function
     public static class SalesOrderEventHubFunction
     {
         [FunctionName("SalesOrderEventHubFunction")]
-        public static async Task Run([EventHubTrigger("ehposdata2", Connection = "ohpossales_RootManageSharedAccessKey_EVENTHUB")] EventData[] events, 
+        public static async Task Run([EventHubTrigger("eh1", Connection = "ohpossales_RootManageSharedAccessKey_EVENTHUB")] EventData[] events, 
         [CosmosDB(
-                    databaseName:"Sales",
-                    collectionName:"Orders",
-                    ConnectionStringSetting ="IceCreamRatingsCosmosDbConnection")] IAsyncCollector<Document> orders,
+                     databaseName:"Sales",
+                     collectionName:"Orders",
+                     ConnectionStringSetting ="IceCreamRatingsCosmosDbConnection")] IAsyncCollector<Document> orders,
         ILogger log)
         {
             var exceptions = new List<Exception>();
@@ -37,6 +37,7 @@ namespace Company.Function
                     {
                         await orders.AddAsync(order);
                     }
+
 
                     // Replace these two lines with your processing logic.
                     //log.LogInformation($"C# Event Hub trigger function processed a message: {messageBody}");

@@ -1,0 +1,7 @@
+﻿# of running instances KQL
+ # second
+
+traces
+| where timestamp >= ago(1h)
+| summarize ['instance count'] = dcount(cloud_RoleInstance) by bin(timestamp, 30sec)
+| render timechart

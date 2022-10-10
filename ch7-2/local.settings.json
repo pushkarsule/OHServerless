@@ -1,0 +1,9 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage":"DefaultEndpointsProtocol=https;AccountName=ohrg1068946;AccountKey=5qA7wqGmS9qyNM4TNZxDR25MY23kLkiJk/cnSe8rEuZ/OpgcaXfemHibS7Q17rH+V8whUMne6fQW+ASt72YRqw==;EndpointSuffix=core.windows.net",
+    "EventHubConnectionString":"Endpoint=sb://ohpossales.servicebus.windows.net/;SharedAccessKeyName=RootManageSharedAccessKey;SharedAccessKey=5MySEkRfL6itPdPR7TYYbS8l29R5AIN5r2AVaKrGTCc=",
+    "IceCreamRatingsCosmosDbConnection":"AccountEndpoint=https://ohcosmosdb.documents.azure.com:443/;AccountKey=A6MBwEBXuFEjvs7acxNNT75tfzPykr6VTkC7bOIvE1Y1kYze19Iqc6IBh41CjXQSOXV7LynKi8nOEgxTpitFRg==;",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet"
+  }
+}

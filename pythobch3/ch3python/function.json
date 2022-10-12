@@ -1,0 +1,29 @@
+{
+  "scriptFile": "__init__.py",
+  "bindings": [
+    {
+      "authLevel": "function",
+      "type": "httpTrigger",
+      "direction": "in",
+      "name": "req",
+      "methods": [
+        "get"
+      ]
+    },
+    {
+      "name": "ratings",
+      "type": "cosmosDB",
+      "databaseName": "bfyoc",
+      "collectionName": "ratings",
+      "connectionStringSetting": "AzureCosmosDBConnectionString",
+      "id" : "{ratingId}",
+      "partitionKey": "{ratingId}",
+      "direction": "in"
+    },
+    {
+      "type": "http",
+      "direction": "out",
+      "name": "$return"
+    }
+  ]
+}

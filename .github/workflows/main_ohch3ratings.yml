@@ -9,7 +9,9 @@ on:
     branches:
       - main
   workflow_dispatch:
-
+defaults:
+  run:
+    working-directory: pythobch3
 env:
   AZURE_FUNCTIONAPP_PACKAGE_PATH: './pythobch3' # set this to the path to your web app project, defaults to the repository root
   PYTHON_VERSION: '3.9' # set this to the python version to use (supports 3.6, 3.7, 3.8)
